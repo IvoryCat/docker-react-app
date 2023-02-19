@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build-and-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and test the Docker image
+      uses: docker/compose-action@v1
+      with:
+        compose-file: docker-compose.yml      
+        compose-command: up --build --abort-on-container-exit
