@@ -11,11 +11,15 @@ jobs:
   build-and-test:
 
     runs-on: ubuntu-latest
+    services:
+      react:
+        image: blue3197/docker-react-app:latest
+        ports:
+          - '8080:80'
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v2
     - name: Build and test the Docker image
-      uses: docker/compose-action@v1
-      with:
-        compose-file: docker-compose.yml      
-        compose-command: up --build --abort-on-container-exit
+      run: |
+        docker-compose up --build
