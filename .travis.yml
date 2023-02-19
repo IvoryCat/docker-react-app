@@ -1,0 +1,19 @@
+sudo: required
+
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - echo "start Creating an image with dockerfile"
+  - docker build -t blue3197/docker-react-app -f Dockerfile.dev .
+  - echo "end Creating an image with dockerfile"
+
+script:
+  - echo "start running tests"
+  - docker run -e CI=true blue3197/docker-react-app npm run test -- --coverage
+  - echo "end running tests"
+
+after_success:
+  - echo "Test Success"
