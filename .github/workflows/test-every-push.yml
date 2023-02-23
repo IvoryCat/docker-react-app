@@ -119,21 +119,21 @@ jobs:
           embed-description: "The ${{ github.job }} job for ${{ github.repository }} ended in failure.\n"
           embed-url: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
-      - name: Send discord when failed
-        # 실패했을 때 실행되겠죠?
-        if: ${{ failure() }}
-        # 직접 '만든' Action이므로 uses 키워드를 이용해서 아래 경로를 입력해줍니다.
-        uses: ./.github/actions/discord-notify
-        # 아까 secrets로 접근할 수 있게 만들어놓은 디스코드 url을 여기에 써볼게요.
-        # with 키워드와 함께 discord_incoming_url 값으로 넘겨줍니다.
-        with:
-          discord_incoming_url: ${{ secrets.DISCORD_INCOMING_URL }}
+      # - name: Send discord when failed
+      #   # 실패했을 때 실행되겠죠?
+      #   if: ${{ failure() }}
+      #   # 직접 '만든' Action이므로 uses 키워드를 이용해서 아래 경로를 입력해줍니다.
+      #   uses: ./.github/actions/discord-notify
+      #   # 아까 secrets로 접근할 수 있게 만들어놓은 디스코드 url을 여기에 써볼게요.
+      #   # with 키워드와 함께 discord_incoming_url 값으로 넘겨줍니다.
+      #   with:
+      #     discord_incoming_url: ${{ secrets.DISCORD_INCOMING_URL }}
 
-      - name: Send discord if completed
-        # 성공할 때만 실행되겠죠?
-        if: ${{ success() }}
-        uses: ./.github/actions/discord-notify
-        # status input은 받는 쪽에서 default 값을 정해놨기 때문에 success일 때만 넘겨줄게요.
-        with:
-          status: success
-          discord_incoming_url: ${{ secrets.DISCORD_INCOMING_URL }}
+      # - name: Send discord if completed
+      #   # 성공할 때만 실행되겠죠?
+      #   if: ${{ success() }}
+      #   uses: ./.github/actions/discord-notify
+      #   # status input은 받는 쪽에서 default 값을 정해놨기 때문에 success일 때만 넘겨줄게요.
+      #   with:
+      #     status: success
+      #     discord_incoming_url: ${{ secrets.DISCORD_INCOMING_URL }}
