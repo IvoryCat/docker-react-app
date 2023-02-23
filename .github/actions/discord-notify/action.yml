@@ -30,6 +30,8 @@ runs:
       shell: bash
       # run: 뒤에 '|'을 붙여서 스크립트를 여러 줄로 사용할 수 있어요.
       run: |
+        sudo apt-get update
+        sudo apt-get install curl
         if [ "${{ inputs.status }}" = "success" ]; then
           EMOTICON="✅"
         else
