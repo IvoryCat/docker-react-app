@@ -105,7 +105,7 @@ jobs:
           content: 'GitHub Action CI/CD - ${{ github.job }}'
           embed-title: '${{ github.job }} Success: Work Flow[ ${{ github.workflow }} #${{ github.run_number }} ]'
           embed-color: 1760000
-          embed-description: "workflow (<https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|${GITHUB_WORKFLOW}>) in [<https://github.com/${GITHUB_REPOSITORY}|${GITHUB_REPOSITORY}>]\n>[${GITHUB_JOB}](https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks) job ${{ inputs.status }}, branch=`${GITHUB_REF#refs/heads/}`"
+          embed-description: "workflow (<https://github.com/${{ github.repository }}/actions/runs/${{ github.job }}|${{ github.workflow }}>) in [<https://github.com/${{ github.repository }}|${{ github.repository }}>]\n>[${{ github.job }}](https://github.com/${{ github.repository }}/commit/${github.sha}/checks) job ${{ inputs.status }}, branch=${{ github.ref }}"
           embed-url: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
       - name: Send Discord Message - Fail
