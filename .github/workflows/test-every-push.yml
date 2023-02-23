@@ -75,7 +75,9 @@ jobs:
           # 그걸로 cache가 hit 됐는지 안 됐는지를 알 수 있나봐요!
           # 그 값이 true가 아닐 때만 npm install을 하겠죠?
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install
+        run: |
+          npm install
+          echo "$GITHUB_REPOSITORY"
 
       # 아래 로직은 저희가 만든 프로젝트의 lint, tsc, build를 테스트하는 곳이에요.
       # run 키워드는 `npm start`같이 커맨트 명령어를 입력할 수 있게 해주는 키워드예요.
@@ -103,9 +105,9 @@ jobs:
         # 아까 secrets로 접근할 수 있게 만들어놓은 디스코드 url을 여기에 써볼게요.
         # with 키워드와 함께 discord_incoming_url 값으로 넘겨줍니다.
         with:
-          discord_incoming_url": ${{ secrets.DISCORD_INCOMING_URL }}
+          discord_incoming_url: ${{ secrets.DISCORD_INCOMING_URL }}
 
-      - name: Send slack if completed
+      - name: Send discord if completed
         # 성공할 때만 실행되겠죠?
         if: ${{ success() }}
         uses: ./.github/actions/discord-notify

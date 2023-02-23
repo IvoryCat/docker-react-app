@@ -35,5 +35,6 @@ runs:
         else
           EMOTICON="⛔"
         fi
-        MSG="{ \"text\":\">${{EMOTICON}} workflow (<https://github.com/${{GITHUB_REPOSITORY}}/actions/runs/${{GITHUB_RUN_ID}}|${{GITHUB_WORKFLOW}}>) in <https://github.com/${{GITHUB_REPOSITORY}}|${{GITHUB_REPOSITORY}}>\n><https://github.com/${{GITHUB_REPOSITORY}}/commit/${{GITHUB_SHA}}/checks|${{GITHUB_JOB}}> job ${{ inputs.status }}, branch=\`${{GITHUB_REF#refs/heads/}}\`\"}"
+        MSG="{ \"text\":\">${EMOTICON} workflow (<https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|${GITHUB_WORKFLOW}>) in <https://github.com/${GITHUB_REPOSITORY}|${GITHUB_REPOSITORY}>\n><https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks|${GITHUB_JOB}> job ${{ inputs.status }}, branch=\`${GITHUB_REF#refs/heads/}\`\"}"
+
         curl -X POST -H 'Content-type: application/json' --data "${MSG}" "${{ inputs.discord_incoming_url }}"
