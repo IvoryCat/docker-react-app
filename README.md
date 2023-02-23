@@ -1,4 +1,4 @@
-[![Node.js CI](https://github.com/IvoryCat/docker-react-app/actions/workflows/node.js.yml/badge.svg)](https://github.com/IvoryCat/docker-react-app/actions/workflows/node.js.yml)
+[![test-every-push](https://github.com/IvoryCat/docker-react-app/actions/workflows/test-every-push.yml/badge.svg)](https://github.com/IvoryCat/docker-react-app/actions/workflows/test-every-push.yml)
 
 # Getting Started with Create React App
 
