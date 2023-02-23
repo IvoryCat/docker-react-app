@@ -17,7 +17,7 @@ on:
 # 그리고 각각 독립적으로도 실행할 수도 있어요.
 # 해당 예제는 간단한 workflow이므로 하나의 job만 갖도록 할게요.
 jobs:
-  test-and-build:
+  test:
     # job의 이름을 정해줍니다.
     name: Test lint, tsc, build
     # 저는 해당 job을 리눅스 환경에서 사용할 거예요. 다른 플랫폼이 올 수도 있겠죠?
@@ -102,10 +102,10 @@ jobs:
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_INCOMING_URL }}
-          content: 'GitHub Action CI/CD - ${{ github.job }}'
-          embed-title: '${{ github.job }} Success: Work Flow[ ${{ github.workflow }} #${{ github.run_number }} ]'
+          content: 'GitHub Action CI/CD'
+          embed-title: '${{ github.workflow }} #${{ github.run_number }}: ${{ github.job }} Success'
           embed-color: 1760000
-          embed-description: "workflow (<https://github.com/${{ github.repository }}/actions/runs/${{ github.job }}>) in [<https://github.com/${{ github.repository }}>]\n>[${{ github.job }}](https://github.com/${{ github.repository }}/commit/${github.sha}/checks) job ${{ inputs.status }}"
+          embed-description: "The ${{ github.job }} job for ${{ github.repository }} ended successfully.\n"
           embed-url: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
       - name: Send Discord Message - Fail
@@ -113,10 +113,10 @@ jobs:
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_INCOMING_URL }}
-          content: 'GitHub Action CI/CD - ${{ github.job }}'
-          embed-title: '${{ github.job }} FAILED: Work Flow[ ${{ github.workflow }} #${{ github.run_number }} ]'
+          content: 'GitHub Action CI/CD'
+          embed-title: '${{ github.workflow }} #${{ github.run_number }}: ${{ github.job }} Failed'
           embed-color: 14024704
-          embed-description: "The ${{ github.job }} job ended failure.\n(Repository: ${{ github.repository }})"
+          embed-description: "The ${{ github.job }} job for ${{ github.repository }} ended in failure.\n"
           embed-url: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
       # - name: Send discord when failed
