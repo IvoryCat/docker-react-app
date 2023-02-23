@@ -106,7 +106,7 @@ jobs:
           embed-title: '${{ github.workflow }} #${{ github.run_number }}: ${{ github.job }} Success'
           embed-color: 1760000
           embed-description: "The ${{ github.job }} job for ${{ github.repository }} ended successfully.\n"
-          embed-url: 'https://github.com/${{ github.repository }}/actions'
+          embed-url: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
       - name: Send Discord Message - Fail
         if: failure()
@@ -117,7 +117,7 @@ jobs:
           embed-title: '${{ github.workflow }} #${{ github.run_number }}: ${{ github.job }} Failed'
           embed-color: 14024704
           embed-description: "The ${{ github.job }} job for ${{ github.repository }} ended in failure.\n"
-          embed-url: 'https://github.com/${{ github.repository }}/actions'
+          embed-url: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
       # - name: Send discord when failed
       #   # 실패했을 때 실행되겠죠?
